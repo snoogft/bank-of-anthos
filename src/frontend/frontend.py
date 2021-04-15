@@ -49,12 +49,23 @@ def create_app():
     app = Flask(__name__)
 
     # Ensure redirect to HTTPS when SCHEME=HTTPS. Readiness probes within k8s can be HTTP.
-    # @app.before_request
-    # def before_request():
-    #     scheme = os.environ.get('SCHEME').lower()  
-    #     if scheme == 'https' and request.url.startswith('http://') and request.endpoint != "readiness":
-    #         url = request.url.replace('http://', 'https://', 1)
-    #         return redirect(url, code=301)
+    @app.before_request
+    def before_request():
+        scheme = os.environ.get('SCHEME').lower()
+        app.logger.info('\n ################## TOP ################## \n')
+        app.logger.info(request.url)
+        app.logger.info(request.endpoint)
+        app.logger.info(request.endpoint == "")
+        app.logger.info(request.endpoint == None)
+        app.logger.info(request.endpoint == 'root')
+        app.logger.info('\n ~~~~~~~~~~~ \n')
+
+        # if scheme == 'https' and request.url.startswith('http://') and request.url.endswith('/login'):
+        if scheme == 'https' and request.url.startswith('http://') and request.endpoint != "readiness" and request.endpoint != "" and request.endpoint != "root":
+            url = request.url.replace('http://', 'https://', 1)
+            return redirect(url, code=301)
+
+        app.logger.info('\n ----------- \n')
 
     # Disabling unused-variable for lines with route decorated functions
     # as pylint thinks they are unused
@@ -362,6 +373,17 @@ def create_app():
                                     _external=True,
                                     _scheme=app.config['SCHEME']))
 
+        # app.logger.info('\n #################################### \n')
+        # app.logger.info(request.is_secure)
+        # app.logger.info(os.environ.get('SCHEME').lower())
+        # app.logger.info(os.environ.get('SCHEME').lower() == 'https' and not request.is_secure)
+        # app.logger.info('\n ~~~~~~~~~~~ \n')
+
+        # if os.environ.get('SCHEME').lower() == 'https' and not request.is_secure:
+        # #     return redirect(url_for('login', _external=True, _scheme=app.config['SCHEME']))
+        #     return redirect(url_for('login_page', _external=True, _scheme=app.config['SCHEME']))
+
+        # app.logger.info('\n $$$$$$$$$$$$$$$$$$$$$$$$$$$ \n')
         return render_template('login.html',
                                cymbal_logo=os.getenv('CYMBAL_LOGO', 'false'),
                                cluster_name=cluster_name,
