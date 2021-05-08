@@ -34,6 +34,9 @@ spec:
         - name: publickey
           mountPath: "/root/.ssh"
           readOnly: true
+        - name: service-account
+          mountPath: /var/run/secret/cloud.google.com
+          readOnly: true
         env:
         - name: VERSION
           value: "v0.4.3"
@@ -52,6 +55,8 @@ spec:
         # Customize the bank name used in the header. Defaults to 'Bank of Anthos' - when CYMBAL_LOGO is true, uses 'CymbalBank'
         # - name: BANK_NAME
         #   value: ""
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /var/run/secret/cloud.google.com/sa-key.json
         - name: DEFAULT_USERNAME
           valueFrom:
             configMapKeyRef:
@@ -95,16 +100,20 @@ spec:
           items:
           - key: jwtRS256.key.pub
             path: publickey
+      - name: service-account
+        secret:
+          secretName: gcp-service-account
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: frontend
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: frontend
   ports:
   - name: http
     port: 80
     targetPort: 8080
+    nodePort: 30001

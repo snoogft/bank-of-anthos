@@ -34,6 +34,9 @@ spec:
         - name: publickey
           mountPath: "/root/.ssh"
           readOnly: true
+        - name: service-account
+          mountPath: /var/run/secret/cloud.google.com
+          readOnly: true
         env:
         - name: VERSION
           value: "v0.4.3"
@@ -45,6 +48,8 @@ spec:
         # If no valid level is set, will default to info.
         - name: LOG_LEVEL
           value: "info"
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /var/run/secret/cloud.google.com/sa-key.json
         envFrom:
         - configMapRef:
             name: environment-config
@@ -71,6 +76,9 @@ spec:
           items:
           - key: jwtRS256.key.pub
             path: publickey
+      - name: service-account
+        secret:
+          secretName: gcp-service-account
 ---
 apiVersion: v1
 kind: Service
