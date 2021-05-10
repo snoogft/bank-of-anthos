@@ -29,13 +29,13 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: balancereader
-        image: gcr.io/bank-of-anthos/balancereader:v0.4.3
+        image: gcr.io/bank-of-anthos/balancereader:ae2df40a0954cb555a58d8f1dd91d57674efca1f79d4bf0035f459b5cb487284
         volumeMounts:
         - name: publickey
           mountPath: "/root/.ssh"
           readOnly: true
         - name: service-account
-          mountPath: /var/run/secret/cloud.google.com
+          mountPath: "/root"
           readOnly: true
         env:
         - name: VERSION
@@ -62,8 +62,10 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
+        - name: GOOGLE_CLOUD_PROJECT
+          value: "boa-kind"
         - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: /var/run/secret/cloud.google.com/sa-key.json
+          value: "file:///root/sa-key.json"
         envFrom:
         - configMapRef:
             name: environment-config

@@ -16,6 +16,18 @@
 
 package anthos.samples.bankofanthos.transactionhistory;
 
+import static io.micrometer.core.instrument.config.validate.PropertyValidator.getString;
+
+import com.google.api.gax.core.CredentialsProvider;
+import com.google.api.gax.core.FixedCredentialsProvider;
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.cloud.monitoring.v3.MetricServiceSettings;
+import io.micrometer.core.instrument.config.validate.InvalidReason;
+import io.micrometer.core.instrument.config.validate.Validated;
+import io.micrometer.core.instrument.util.StringUtils;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 import com.google.cloud.MetadataConfig;
 import io.micrometer.stackdriver.StackdriverConfig;
 import io.micrometer.stackdriver.StackdriverMeterRegistry;
@@ -103,7 +115,35 @@ public class TransactionHistoryApplication {
                 }
                 return id;
             }
+/*
+@Override
+      public CredentialsProvider credentials() {
+        Validated<String> validatedString = getString(this, "credentials");
+        LOGGER.info(">>>> " + validatedString.get());
+        return validatedString.flatMap((credentials, valid) -> {
+          LOGGER.info(">>>> " + credentials + " ++++ " + valid.get());
+          if (StringUtils.isBlank(credentials)) {
+            credentials = "file:///root/sa-key.json";
+            // return Validated.valid(valid.getProperty(),
+            //     MetricServiceSettings.defaultCredentialsProviderBuilder().build());
+          }
 
+          LOGGER.info(">>>> IN HERE");
+          try {
+            FixedCredentialsProvider provider = FixedCredentialsProvider.create(
+                GoogleCredentials.fromStream(new FileInputStream(credentials))
+                    .createScoped(MetricServiceSettings.getDefaultServiceScopes())
+            );
+            return Validated.valid(valid.getProperty(), provider);
+          } catch (IOException t) {
+            return Validated
+                .invalid(valid.getProperty(), credentials, "cannot read credentials file",
+                    InvalidReason.MALFORMED, t);
+          }
+        })
+            .get();
+      }
+      */
             @Override
             public String get(String key) {
                 return null;

@@ -29,13 +29,13 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: transactionhistory
-        image: gcr.io/bank-of-anthos/transactionhistory:v0.4.3
+        image: gcr.io/boa-kind/transactionhistory:latest
         volumeMounts:
         - name: publickey
           mountPath: "/root/.ssh"
           readOnly: true
         - name: service-account
-          mountPath: /var/run/secret/cloud.google.com
+          mountPath: "/root"
           readOnly: true
         env:
         - name: VERSION
@@ -68,9 +68,9 @@ spec:
             fieldRef:
               fieldPath: metadata.namespace
         - name: GOOGLE_CLOUD_PROJECT
-          value: boa-kind
+          value: "boa-kind"
         - name: GOOGLE_APPLICATION_CREDENTIALS
-          value: /var/run/secret/cloud.google.com/sa-key.json
+          value: "file:///root/sa-key.json"
         envFrom:
         - configMapRef:
             name: environment-config

@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "boa-kind",
+  "private_key_id": "cdd9e3db3dc1285535429c5c0c9a4d2febe447e8",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCsWv6Zyw10dZPg\nRHD7MB8FyrFDQmlv6GScZYRVHPW4si0X9CovdUeQV44mYYEp/amuW2dzzU5MlBVX\nLCFhYv/O6xe/qxWHMp1KlvP+zfDHKUY2XctVSVN64MLj/+MBltohdP4dU6AOdfe+\n4yFm93ImX9Oq5bOrRVM1FQxGcFT+G3MVLW54Gu7KKMVb5/OJZdGAuaqvY4LDdXYf\nR91a7yR2i6ywlUKOsZr+Q3dR1SO0DZ23b2a0ZDkds5i9WVq5XLTK93bta+9E7Fic\nVPUMj5q2M0Vq8/wxkfsEd5EwF8CFeT10uvE3GCiFRIAeXB1QH+/x4sIfz/stulNJ\nLcxBXSRdAgMBAAECggEABnlqKoeSTmqdDtKWiXwwRImg1c1b114cBJsnnzVCrn86\n6s7U+tb/Kv17xuNPJ8jYika/gLEYnNwyXp9QwOJbVTMT8rMDHWkzhJORDMqnN12Z\nWDEQkngtQ5nHy5EkJNe9NktS9FhDOrShuGQg/OFhdbspx1FwY1TSU4i73xvlhW03\nJHkkDSd+B6fZR6jTZPyFaZ1OHmJ51wWLz5A1ezLMXlfmo1ul2EEhrP8k+OfLP1Bw\nG15F9W6tO29qC50hZGY2ZEimBHOvpqg9mgH5kfo+S2i/tnFbYCj5JzJ4OScSi0Mc\npZdJTPmsiF/s5aBreNXOL2eRrlxFnke5KJ7ouxEH4QKBgQDbrGni0MPxYjma4E3G\n4mEoN1yxPhCChXYoB1idqDlEcaGpLAya+1zOLEzTropFRJfPNb3KAcW/AoBfJAUF\nWNG06RCpzJrHJ3TfZClO2fMsQ1q2ichAU434hbc7TEMAm/LUEOQ/HJvNgBwrkP+W\n9dA2ltQ6Q/o1ams9n3P0mUsseQKBgQDI228n6xrYJEqpgSTugeHTOLvHFPY4LZba\n7LxKI0fWYAWimAh/khtNK7l/NzsL81SB2GbfV/qFc0DMLclcrzh0PG4fOjidcPso\ntMXDXHRuBvaZJ5Bp/rcRI8zaiTSDcGSVSI8UUzQ3s0/r/GOAq1ThOVkqQVVJNb6T\n2ViI2zH2BQKBgGmtwCLFm/376wp+7evH7EWUnJsH6Jlh6z3GivMNgr9Sixr/ffDx\nC+yDk1IinZJFNWMRz4Pm5mLFqUwb3+56lCgcF1AYhj1Y1fjCDr1ITJv2qyU1k4ie\nqaXtbgCw52rbmy46EhPqh2mNQAAVeV/+UXRxixecrDoWQBEdLIN3W5rBAoGAaMg4\n071NssY0APtzVc2CDpvBMhlYXXRDB5CKpa6EEmzjY7Amds602WxfB+O7NP/K7TYE\nbK1L7wRyIFIegvCR5emElVvdHx1KmTC9Hq6DusZ9LOa76t/LhvCDNNpw/8TJZCuH\nINZLHme34Oc4zW4UCK7POkD9CgU0l5LCIhsflDUCgYEApgBgI8OLpbD//3hNPG7/\nDsHe7GO7OJhtqnJxBAAtrKOB7N8zvaGyKEzzQMDUYvIdfm6tfgOUAW1qJcwngPO4\nEPdPd6yKTGeE3LAgXlu1ioNRg9wwsggnSvQlwXxq0aDzxpHy83Yn3iQNjigEqvns\nNNDpVZetyfFlXrCRIvML6Hk=\n-----END PRIVATE KEY-----\n",
+  "client_email": "boa-sa@boa-kind.iam.gserviceaccount.com",
+  "client_id": "110559534474034437613",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/boa-sa%40boa-kind.iam.gserviceaccount.com"
+}

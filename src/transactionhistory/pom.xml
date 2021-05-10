@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
  Copyright 2020 Google LLC
 
@@ -151,6 +152,14 @@
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
                 <version>2.1.0</version>
+                  <configuration>
+                <from>
+                  <image>openjdk:11-jre-slim</image>
+                </from>
+                <to>
+                  <image>gcr.io/boa-kind/transactionhistory</image>
+                </to>
+              </configuration>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
