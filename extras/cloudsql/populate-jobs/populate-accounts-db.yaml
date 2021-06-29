@@ -17,6 +17,9 @@ metadata:
   name: populate-accounts-db
 spec:
   template:
+    metadata:
+      labels:
+        "sidecar.istio.io/inject": "false"
     spec:
       shareProcessNamespace: true # Important to stop all processes
       serviceAccountName: boa-ksa
