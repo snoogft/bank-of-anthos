@@ -11,4 +11,4 @@ jobs:
       - name: Setup polaris
         uses: fairwindsops/polaris@master
         with:
-          entrypoint: "polaris audit --audit-path ./extras/cloudsql/kubernetes-manifests --format=pretty"
+          args: /bin/sh -c "polaris audit --audit-path ./extras/cloudsql/kubernetes-manifests --format=pretty"
