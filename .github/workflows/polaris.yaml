@@ -10,8 +10,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Setup polaris
         uses: fairwindsops/polaris@master
-        with:
-          version: 3.0.3
 
       - name: Use command
-        run: polaris version
+        run: polaris audit//polaris audit --audit-path ./extras/cloudsql/kubernetes-manifests --format=pretty
