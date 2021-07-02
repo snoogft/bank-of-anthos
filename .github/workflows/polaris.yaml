@@ -12,6 +12,7 @@ jobs:
         uses: fairwindsops/polaris@master
         with:
           args: version
+          entrypoint: polaris
 
       - name: Use command
         run: polaris audit --audit-path ./extras/cloudsql/kubernetes-manifests --format=pretty
