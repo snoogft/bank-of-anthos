@@ -1,10 +1,6 @@
 name: "Polaris Scan Action"
 
-on:
-  push:
-    branches: dev
-  pull_request:
-    branches: dev-secondary
+on: [push, pull_request]
 
 jobs:
   security:
