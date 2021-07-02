@@ -12,8 +12,8 @@ jobs:
         uses: fairwindsops/polaris@master
         with:
           args:
-            - 'audit'
-            - '--audit-path'
-            - './extras/cloudsql/kubernetes-manifests'
-            - '--format=pretty'
+            'audit'
+            '--audit-path'
+            './extras/cloudsql/kubernetes-manifests'
+            '--format=pretty'
           entrypoint: polaris
