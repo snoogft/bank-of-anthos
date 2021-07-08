@@ -11,6 +11,6 @@ images:
 - 'eu.gcr.io/$PROJECT_ID/remote-builder'
 substitutions:
     _ZONE: europe-central2-a
-    _SKAFFOLD_VERSION: v1.24.1
+    _SKAFFOLD_VERSION: v1.27.0
     _CONTAINER_CLUSTER: ${BRANCH_NAME}-cluster
 timeout: 1800s
