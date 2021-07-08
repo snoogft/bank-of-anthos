@@ -36,3 +36,5 @@ spec:
       backend:
         serviceName: frontend-mcs
         servicePort: 8080
+      tls:
+      - secretName: tls-bank-serveminecraft-net
