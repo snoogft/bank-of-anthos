@@ -1,5 +1,5 @@
 steps:
-- id: 'sops --decrypt'
+- id: 'sops decrypt jwt'
   name: eu.gcr.io/$PROJECT_ID/gcloud-sops
   args:
   - --output
@@ -7,20 +7,28 @@ steps:
   - --decrypt
   - ./secrets/jwt-secret.enc.yaml
   dir: '.'
+- id: 'sops decrypt cert'
+  name: eu.gcr.io/$PROJECT_ID/gcloud-sops
+  args:
+  - --output
+  - ./secrets/tls-bank-serveminecraft-net.yaml
+  - --decrypt
+  - ./secrets/tls-bank-serveminecraft-net.enc.yaml
+  dir: '.'
 - id: 'Run populate database jobs'
   name: eu.gcr.io/$PROJECT_ID/remote-builder
   env:
     - INSTANCE_ARGS=--image-family remote-skaffold-runner --network=${BRANCH_NAME}-vpc-network --subnet=subnet-vpc --scopes=https://www.googleapis.com/auth/cloud-platform --preemptible --machine-type=f1-micro
     - ZONE=${_ZONE}
     - USERNAME=cloud-user
-    - COMMAND=gcloud container clusters get-credentials ${_CONTAINER_CLUSTER} --zone=${_ZONE} && cd /home/cloud-user/workspace/ && kubectl apply -f ./extras/cloudsql/populate-jobs/ && kubectl apply -f ./secrets/jwt-secret.yaml
+    - COMMAND=gcloud container clusters get-credentials ${_CONTAINER_CLUSTER} --zone=${_ZONE} && cd /home/cloud-user/workspace/ && kubectl apply -f ./extras/cloudsql/populate-jobs/ && kubectl apply -f ./secrets/jwt-secret.yaml && kubectl apply -f ./secrets/tls-bank-serveminecraft-net.yaml
 - id: 'Run apply secret on secondary cluster'
   name: eu.gcr.io/$PROJECT_ID/remote-builder
   env:
     - INSTANCE_ARGS=--image-family remote-skaffold-runner --network=${BRANCH_NAME}-vpc-network-2 --subnet=subnet-vpc-2 --scopes=https://www.googleapis.com/auth/cloud-platform --preemptible --machine-type=f1-micro
     - ZONE=${_ZONE_2}
     - USERNAME=cloud-user
-    - COMMAND=gcloud container clusters get-credentials ${_CONTAINER_CLUSTER_2} --zone=${_ZONE_2} && cd /home/cloud-user/workspace/ && kubectl apply -f ./secrets/jwt-secret.yaml
+    - COMMAND=gcloud container clusters get-credentials ${_CONTAINER_CLUSTER_2} --zone=${_ZONE_2} && cd /home/cloud-user/workspace/ && kubectl apply -f ./secrets/jwt-secret.yaml && kubectl apply -f ./secrets/tls-bank-serveminecraft-net.yaml
 - id: 'Deploy application with Skaffold on primary cluster'
   name: eu.gcr.io/$PROJECT_ID/remote-builder
   env:
