@@ -57,7 +57,7 @@ steps:
 substitutions:
     _PROJECT_ID: pol-pod11-dev-01
     _ZONE: europe-west4-a
-    _ZONE_2: europe-west6-a
+    _ZONE_2: southamerica-east1-a
     _CONTAINER_CLUSTER: ${BRANCH_NAME}-cluster-1
     _CONTAINER_CLUSTER_2: ${BRANCH_NAME}-cluster-2
 timeout: 1800s
